@@ -15,6 +15,11 @@ android {
         buildConfigField "String", "TOKEN", "w5908TN8FkfWWBg0prcwZdUTD3IHuVB3"
         buildConfigField "String", "CONSUMER_KEY", "QR_3Q8-It8bSlVk_8_31QQ"
         buildConfigField "String", "CONSUMER_SECRET", "XrxgtR4RViMtisUhOiOUaccKdJ4"
+
+        //java 8
+        jackOptions {
+            enabled true
+        }
     }
     buildTypes {
         release {
@@ -22,13 +27,39 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
+
+    def SUPPORT_LIB_VERSION = '24.1.1'
+    def RETROFIT_VERSION = '2.1.0'
+    def RX_JAVA_VERSION = '1.2.4'
+    def YELP_LIB_VERSION = '2.0.0'
+    def DAGGER_VERSION = '2.8'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.1.1'
+
+    //Support Libs
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIB_VERSION"
 
     //Yelp wrapper lib
-    compile 'com.yelp.clientlib:yelp-android:2.0.0'
+    compile "com.yelp.clientlib:yelp-android:$YELP_LIB_VERSION"
+
+    //Dagger
+    compile "com.google.dagger:dagger:$DAGGER_VERSION"
+    annotationProcessor "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+
+    //Retrofit
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+
+    //RxJava
+    compile "io.reactivex:rxjava:$RX_JAVA_VERSION"
+
 }
