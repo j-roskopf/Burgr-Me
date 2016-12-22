@@ -1,25 +1,28 @@
 apply plugin: 'com.android.application'
 
+def cfg = rootProject.ext.configuration
+def libs = rootProject.ext.libraries;
+
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion cfg.compileVersion
+    buildToolsVersion cfg.buildToolsVersion
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
 
     defaultConfig {
-        applicationId "io.burgrme"
-        minSdkVersion 15
-        targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        applicationId cfg.package
+        minSdkVersion cfg.minSdk
+        targetSdkVersion cfg.targetSdk
+        versionCode cfg.versionCode
+        versionName cfg.versionName
 
-        buildConfigField "String", "TOKEN_SECRET", "Qpd3AivrNovXjP_OYxTd0Wptrl0"
-        buildConfigField "String", "TOKEN", "w5908TN8FkfWWBg0prcwZdUTD3IHuVB3"
-        buildConfigField "String", "CONSUMER_KEY", "QR_3Q8-It8bSlVk_8_31QQ"
-        buildConfigField "String", "CONSUMER_SECRET", "XrxgtR4RViMtisUhOiOUaccKdJ4"
+        buildConfigField "String", "TOKEN_SECRET", "\"Qpd3AivrNovXjP_OYxTd0Wptrl0\""
+        buildConfigField "String", "TOKEN", "\"w5908TN8FkfWWBg0prcwZdUTD3IHuVB3\""
+        buildConfigField "String", "CONSUMER_KEY", "\"QR_3Q8-It8bSlVk_8_31QQ\""
+        buildConfigField "String", "CONSUMER_SECRET", "\"XrxgtR4RViMtisUhOiOUaccKdJ4\""
 
-        //java 8
-        jackOptions {
-            enabled true
-        }
     }
     buildTypes {
         release {
@@ -28,38 +31,51 @@ android {
         }
     }
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 
 }
 
 dependencies {
 
-    def SUPPORT_LIB_VERSION = '24.1.1'
-    def RETROFIT_VERSION = '2.1.0'
-    def RX_JAVA_VERSION = '1.2.4'
-    def YELP_LIB_VERSION = '2.0.0'
-    def DAGGER_VERSION = '2.8'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 
     //Support Libs
-    compile "com.android.support:appcompat-v7:$SUPPORT_LIB_VERSION"
+    compile "com.android.support:appcompat-v7:${libs.supportVersion}"
+    compile "com.android.support:cardview-v7:${libs.supportVersion}"
+    compile "com.android.support:recyclerview-v7:${libs.supportVersion}"
+
 
     //Yelp wrapper lib
-    compile "com.yelp.clientlib:yelp-android:$YELP_LIB_VERSION"
+    compile "com.yelp.clientlib:yelp-android:${libs.yelp}"
 
     //Dagger
-    compile "com.google.dagger:dagger:$DAGGER_VERSION"
-    annotationProcessor "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    compile "com.google.dagger:dagger:${libs.dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${libs.dagger}"
+    provided 'javax.annotation:jsr250-api:1.0'
 
     //Retrofit
-    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:retrofit:${libs.retrofit}"
 
     //RxJava
-    compile "io.reactivex:rxjava:$RX_JAVA_VERSION"
+    compile "io.reactivex:rxjava:${libs.rxjava}"
 
+    //Search View
+    compile "com.github.arimorty:floatingsearchview:${libs.searchView}"
+
+    //Butter Knife
+    compile "com.jakewharton:butterknife:${libs.butterKnife}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${libs.butterKnife}"
+
+    //Circular Image View
+    compile "com.mikhaellopez:circularimageview:${libs.circularImageView}"
+    
 }
