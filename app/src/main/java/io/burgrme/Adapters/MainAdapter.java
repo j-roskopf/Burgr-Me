@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,8 +70,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.FoodViewHolder
      */
     private void setImage(ImageView imageView, int position){
         String uri = "@drawable/".concat(items.get(position).getDrawable());
-
-        Log.d("D","settingImageView to " + uri);
 
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         Drawable drawable = ContextCompat.getDrawable(context,imageResource);

@@ -23,8 +23,16 @@ import io.burgrme.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * UI
+     */
+
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+
+    /**
+     * DAGGER INJECTED
+     */
 
     @Inject
     Logger logger;
@@ -34,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Inject
     FoodItem[] foodItems;
+
+    /**
+     * NON UI
+     */
 
     Context context;
 
