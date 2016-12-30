@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Burgr Me</string>
-
+    <string name="err_loading_business">Error loading restaurant, please check your network connection</string>
 </resources>
