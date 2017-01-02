@@ -1,7 +1,6 @@
 package io.burgrme.Activities;
 
 import android.content.Context;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Inject
     Logger logger;
-
-    @Inject
-    LocationManager locationManager;
 
     @Inject
     FoodItem[] foodItems;

@@ -5,6 +5,7 @@ import android.location.LocationManager;
 
 import dagger.Module;
 import dagger.Provides;
+import io.burgrme.Logging.Logger;
 import io.burgrme.Model.FoodItem;
 
 /**
@@ -22,6 +23,11 @@ public class AppModule {
     @Provides
     public LocationManager provideLocationManager(){
         return (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+    }
+
+    @Provides
+    public Logger provideLogger(){
+        return new Logger();
     }
 
     @Provides
