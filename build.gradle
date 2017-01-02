@@ -16,9 +16,11 @@ ext {
             retrofit            : "1.6.1",
             butterKnife         : "8.4.0",
             searchView          : "2.0.3",
+            glide               : "3.7.0",
             yelp                : "2.0.0",
             cardView            : "2.1.0",
-            circularImageView   : "3.0.2"
+            circularImageView   : "3.0.2",
+            gson                : "2.0.12"
     ]
 
 }
