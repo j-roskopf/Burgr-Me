@@ -200,6 +200,10 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
                     location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) == null ? locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
                             : locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
+                    mLatitude = location.getLatitude();
+                    mLongitude = location.getLongitude();
+                    if(location != null) getAddressFromLatitudeAndLongitude(mLatitude, mLongitude);
+
                     /**
                      * request location updates, especially for emulators, as there may not be a last known location saved to the device.
                      */
@@ -222,17 +226,6 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
                 logger.log("detailDebug 8 geo-Location Perm Not Granted ");
             }
 
-            logger.log("locationDebug isNetworkEnabled = " + isNetworkEnabled);
-
-            if (location != null && !isGPSEnabled && !isNetworkEnabled) {
-                logger.log("detailDebug geo-Location accuracy " + location.getAccuracy());
-
-                mLatitude = location.getLatitude();
-                mLongitude = location.getLongitude();
-
-                getAddressFromLatitudeAndLongitude(mLatitude, mLongitude);
-
-            }
         }
         else    {
             logger.log("detailDebug geo-Location locationManager is null");
