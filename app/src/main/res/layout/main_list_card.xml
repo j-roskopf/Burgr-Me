@@ -4,7 +4,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="320dp"
     android:orientation="horizontal">
 
     <android.support.v7.widget.CardView
@@ -17,61 +17,120 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:layout_height="match_parent">
 
+            <!-- Top image / title container -->
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_weight="4"
+                android:weightSum="10"
+                android:orientation="horizontal"
+                android:layout_height="0dp">
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="2">
-
-                <RelativeLayout
-                    android:id="@+id/imageContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
+                <!-- Image container -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_margin="8dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent">
                     <ImageView
-                        android:id="@+id/imageView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-                        android:layout_margin="16dp" />
-
-                </RelativeLayout>
-
+                        android:id="@+id/imageView"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/textContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
+                    android:layout_width="0dp"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical"
+                    android:layout_weight="8"
+                    android:weightSum="10"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Food name"
+                        android:id="@+id/foodName"
+                        android:gravity="center"
+                        android:layout_gravity="left"
+                        android:layout_height="0dp"
+                        android:layout_weight="5"
+                        android:textAppearance="@android:style/TextAppearance.Material.Title" />
 
                     <TextView
-                        android:id="@+id/foodName"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="16dp"
-                        android:gravity="center" />
+                        android:layout_width="wrap_content"
+                        android:layout_margin="8dp"
+                        android:id="@+id/foodCategory"
+                        android:gravity="center"
+                        android:layout_gravity="left"
+                        android:text="Food Category"
+                        android:layout_height="0dp"
+                        android:layout_weight="5"
+                        android:textColor="@color/dark_gray" />
                 </LinearLayout>
 
 
             </LinearLayout>
+
+            <!-- Bottom text container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="4"
+                android:orientation="vertical"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_margin="8dp"
+                    android:id="@+id/title"
+                    android:textAppearance="@android:style/TextAppearance.Material.Title"
+                    android:text="Title"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/body"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:gravity="left"
+                    android:layout_margin="8dp"
+                    android:text="Praesent vulputate metus sit amet semper tincidunt. Fusce ullamcorper lorem a urna accumsan, eu venenatis lorem bibendum. Quisque egestas posuere dui, ut congue ante ultricies eu"
+                    android:layout_height="match_parent"
+                    android:textAppearance="@android:style/TextAppearance.Material" />
+
+            </LinearLayout>
+
+            <!-- Bottom layout -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/view_top_border"
+                android:layout_weight="2"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Feeling lucky"
+                    android:gravity="center"
+                    android:layout_margin="16dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true" />
+
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="24dp"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/arrow_right_18dp"
+                    android:layout_height="24dp" />
+
+
+            </RelativeLayout>
 
 
         </LinearLayout>
