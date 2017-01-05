@@ -200,9 +200,12 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
                     location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) == null ? locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
                             : locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-                    mLatitude = location.getLatitude();
-                    mLongitude = location.getLongitude();
-                    if(location != null) getAddressFromLatitudeAndLongitude(mLatitude, mLongitude);
+
+                    if(location != null) {
+                        mLatitude = location.getLatitude();
+                        mLongitude = location.getLongitude();
+                        getAddressFromLatitudeAndLongitude(mLatitude, mLongitude);
+                    }
 
                     /**
                      * request location updates, especially for emulators, as there may not be a last known location saved to the device.
@@ -218,7 +221,6 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
                                 Constants.MIN_TIME_BETWEEN_UPDATES,
                                 Constants.MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
                     }
-
 
                 }
             }
