@@ -1,8 +1,10 @@
 package io.burgrme.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +31,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.FoodViewHolder
 
     Context context;
 
+    View v;
+
     public MainAdapter(List<FoodItem> items, Context context){
         this.items = items;
         this.context = context;
@@ -41,7 +45,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.FoodViewHolder
 
     @Override
     public FoodViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.main_list_card, viewGroup, false);
+        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.main_list_card, viewGroup, false);
         FoodViewHolder foodViewHolder = new FoodViewHolder(v);
         return foodViewHolder;
     }
@@ -56,7 +60,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.FoodViewHolder
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra(Constants.INTENT_EXTRA_FOOD_ITEM, items.get(position));
-                context.startActivity(intent);
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation((Activity) context, v.findViewById(R.id.cardView), "card_image");
+
+                context.startActivity(intent,options.toBundle());
             }
         });
 

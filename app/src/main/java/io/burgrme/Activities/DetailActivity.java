@@ -338,6 +338,9 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
         loading_spinner.setVisibility(View.INVISIBLE);
 
         DetailViewPagerAdapter detailViewPagerAdapter = new DetailViewPagerAdapter(getSupportFragmentManager(),toDisplay);
+        viewPager.setClipToPadding(false);
+        viewPager.setPageMargin(50);
+        viewPager.setPadding(150,150,150,150);
         viewPager.setAdapter(detailViewPagerAdapter);
     }
 
@@ -355,6 +358,13 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        try {
+            super.onDestroy();
+        } catch (NullPointerException npe) {}
     }
 
     @Override
