@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.burgrme.Activities.BusinessDetailActivity;
+import io.burgrme.Activities.OverviewActivity;
 import io.burgrme.Constants;
 import io.burgrme.Logging.Logger;
 import io.burgrme.R;
@@ -42,6 +45,9 @@ public class OverviewFragment extends Fragment {
 
     @BindView(R.id.businessImage)
     ImageView businessImage;
+
+    @BindView(R.id.businessInfoContainer)
+    RelativeLayout businessInfoContainer;
     
     @BindView(R.id.btn_phone)
     ImageButton btn_phone;
@@ -59,9 +65,7 @@ public class OverviewFragment extends Fragment {
      * 
      * NON UI
      */
-
     Business thisBusiness;
-    Context mContext;
     Logger logger;
 
     @Override
@@ -104,16 +108,22 @@ public class OverviewFragment extends Fragment {
                     navigateToBusiness(thisBusiness);
                 }
             });
-            logger.log("Business " + thisBusiness.name() + " Distance = " + thisBusiness.distance() + " mobile url = " + thisBusiness.mobileUrl() + " descript = " + thisBusiness.snippetText());
 
-            
             //refer to these 2 SO as to why this is done
             //http://stackoverflow.com/questions/22000077/how-to-request-larger-images-from-yelp-api
             //http://stackoverflow.com/questions/17965691/yelp-api-ios-getting-a-larger-image
             String imageUrl = thisBusiness.imageUrl().replace("ms.jpg","l.jpg");
-
-
             Glide.with(this).load(imageUrl).into(businessImage);
+
+            businessInfoContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), BusinessDetailActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra(Constants.INTENT_EXTRA_FOOD_ITEM, thisBusiness);
+                    getActivity().startActivity(intent);
+                }
+            });
         }else{
             businessName.setText("NULL");
         }
