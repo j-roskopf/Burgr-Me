@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="io.burgrme">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -7,7 +8,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.location.gps" />
-
 
     <application
         android:allowBackup="true"
@@ -22,7 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.DetailActivity"></activity>
+        <activity
+            android:name=".Activities.OverviewActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity android:name=".Activities.BusinessDetailActivity"></activity>
     </application>
 
 </manifest>

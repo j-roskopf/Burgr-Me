@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import io.burgrme.Activities.DetailActivity;
+import io.burgrme.Activities.OverviewActivity;
 import io.burgrme.Constants;
 import io.burgrme.Model.FoodItem;
 import io.burgrme.R;
@@ -29,6 +29,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.FoodViewHolder
 
     Context context;
 
+    View v;
+
     public MainAdapter(List<FoodItem> items, Context context){
         this.items = items;
         this.context = context;
@@ -41,7 +43,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.FoodViewHolder
 
     @Override
     public FoodViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.main_list_card, viewGroup, false);
+        v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.main_list_card, viewGroup, false);
         FoodViewHolder foodViewHolder = new FoodViewHolder(v);
         return foodViewHolder;
     }
@@ -53,7 +55,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.FoodViewHolder
         personViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailActivity.class);
+                Intent intent = new Intent(context, OverviewActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra(Constants.INTENT_EXTRA_FOOD_ITEM, items.get(position));
                 context.startActivity(intent);

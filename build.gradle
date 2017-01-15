@@ -3,7 +3,7 @@ ext {
             package             : "io.burgrme",
             buildToolsVersion   : "25.0.2",
             compileVersion      : 25,
-            minSdk              : 15,
+            minSdk              : 16,
             targetSdk           : 24,
             versionCode        : 1,
             versionName        : "1.0"

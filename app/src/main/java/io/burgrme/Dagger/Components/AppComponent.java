@@ -1,7 +1,7 @@
 package io.burgrme.Dagger.Components;
 
 import dagger.Component;
-import io.burgrme.Activities.DetailActivity;
+import io.burgrme.Activities.OverviewActivity;
 import io.burgrme.Activities.MainActivity;
 import io.burgrme.Dagger.Modules.AppModule;
 
@@ -12,5 +12,5 @@ import io.burgrme.Dagger.Modules.AppModule;
 @Component(modules = AppModule.class)
 public interface AppComponent {
     void inject(MainActivity activity);
-    void inject(DetailActivity activity);
+    void inject(OverviewActivity activity);
 }

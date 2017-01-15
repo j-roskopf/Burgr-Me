@@ -35,7 +35,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.burgrme.Adapters.DetailViewPagerAdapter;
+import io.burgrme.Adapters.OverviewPagerAdapter;
 import io.burgrme.BuildConfig;
 import io.burgrme.Constants;
 import io.burgrme.Dagger.Components.AppComponent;
@@ -52,7 +52,7 @@ import rx.schedulers.Schedulers;
 
 import static io.burgrme.Constants.REQUEST_CODE_ASK_PERMISSIONS;
 
-public class DetailActivity extends AppCompatActivity implements LocationListener {
+public class OverviewActivity extends AppCompatActivity implements LocationListener {
 
     /**
      * UI
@@ -337,7 +337,10 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
         //Done loading, hide the spinner
         loading_spinner.setVisibility(View.INVISIBLE);
 
-        DetailViewPagerAdapter detailViewPagerAdapter = new DetailViewPagerAdapter(getSupportFragmentManager(),toDisplay);
+        OverviewPagerAdapter detailViewPagerAdapter = new OverviewPagerAdapter(getSupportFragmentManager(),toDisplay);
+        viewPager.setClipToPadding(false);
+        viewPager.setPageMargin(50);
+        viewPager.setPadding(150,150,150,150);
         viewPager.setAdapter(detailViewPagerAdapter);
     }
 
@@ -355,6 +358,13 @@ public class DetailActivity extends AppCompatActivity implements LocationListene
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        try {
+            super.onDestroy();
+        } catch (NullPointerException npe) {}
     }
 
     @Override
