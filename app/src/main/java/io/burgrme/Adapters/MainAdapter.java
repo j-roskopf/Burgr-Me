@@ -1,10 +1,8 @@
 package io.burgrme.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import io.burgrme.Activities.DetailActivity;
+import io.burgrme.Activities.OverviewActivity;
 import io.burgrme.Constants;
 import io.burgrme.Model.FoodItem;
 import io.burgrme.R;
@@ -57,13 +55,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.FoodViewHolder
         personViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailActivity.class);
+                Intent intent = new Intent(context, OverviewActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra(Constants.INTENT_EXTRA_FOOD_ITEM, items.get(position));
-                ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((Activity) context, v.findViewById(R.id.cardView), "card_image");
-
-                context.startActivity(intent,options.toBundle());
+                context.startActivity(intent);
             }
         });
 
