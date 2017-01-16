@@ -25,6 +25,8 @@ android {
         buildConfigField "String", "CONSUMER_KEY", "\"QR_3Q8-It8bSlVk_8_31QQ\""
         buildConfigField "String", "CONSUMER_SECRET", "\"XrxgtR4RViMtisUhOiOUaccKdJ4\""
         buildConfigField "String", "API_SEARCH_ENDPOINT", "\"https://api.yelp.com\""
+        buildConfigField "String", "CLIENT_ID", "\"cVsUrwDQGINa2OUkt6iAsg\""
+        buildConfigField "String", "CLIENT_SECRET", "\"vR4uvSXXEdGMKLeENsk2o2s1EGbLgoEYdNevV3bIFFuKMtpM1CACRBhcpfmYqqbI\""
 
     }
     buildTypes {

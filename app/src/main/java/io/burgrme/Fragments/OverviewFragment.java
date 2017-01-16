@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.yelp.clientlib.entities.Business;
 import com.yelp.clientlib.entities.Category;
 
 import java.util.ArrayList;
@@ -23,9 +22,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.burgrme.Activities.BusinessDetailActivity;
-import io.burgrme.Activities.OverviewActivity;
 import io.burgrme.Constants;
 import io.burgrme.Logging.Logger;
+import io.burgrme.Model.Business;
 import io.burgrme.R;
 
 /**
@@ -81,9 +80,9 @@ public class OverviewFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            thisBusiness = (Business)bundle.getSerializable(Constants.BUNDLE_EXTRA_BUSINESS);
-            businessName.setText(thisBusiness.name());
-            businessSnippet.setText(getBusinessCategories(thisBusiness.categories()));
+            thisBusiness = (Business) bundle.getSerializable(Constants.BUNDLE_EXTRA_BUSINESS);
+            businessName.setText(thisBusiness.name);
+            businessSnippet.setText(thisBusiness.categories);
             btn_phone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -112,7 +111,7 @@ public class OverviewFragment extends Fragment {
             //refer to these 2 SO as to why this is done
             //http://stackoverflow.com/questions/22000077/how-to-request-larger-images-from-yelp-api
             //http://stackoverflow.com/questions/17965691/yelp-api-ios-getting-a-larger-image
-            String imageUrl = thisBusiness.imageUrl().replace("ms.jpg","l.jpg");
+            String imageUrl = thisBusiness.image_url;
             Glide.with(this).load(imageUrl).into(businessImage);
 
             businessInfoContainer.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +130,7 @@ public class OverviewFragment extends Fragment {
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"Open up " + thisBusiness.name() + " in detail detail view",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Open up " + thisBusiness.name + " in detail detail view",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -145,28 +144,28 @@ public class OverviewFragment extends Fragment {
     }
 
     private void navigateToBusiness(Business thisBusiness) {
-        String geoUri = "http://maps.google.com/maps?q=loc:" + thisBusiness.location().coordinate().latitude() + "," + thisBusiness.location().coordinate().longitude() + " (" + thisBusiness.name() + ")";
+        String geoUri = "http://maps.google.com/maps?q=loc:" + thisBusiness.latitude + "," + thisBusiness.longitude + " (" + thisBusiness.name + ")";
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
         getActivity().startActivity(intent);
     }
 
     private void openBusinessWebsite(Business thisBusiness) {
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(thisBusiness.mobileUrl()));
+        i.setData(Uri.parse(thisBusiness.url));
         startActivity(i);
     }
 
     private void shareBusiness(Business thisBusiness) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, thisBusiness.mobileUrl());
+        sendIntent.putExtra(Intent.EXTRA_TEXT, thisBusiness.url);
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
     }
 
     private void callBusiness(Business thisBusiness) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + thisBusiness.phone()));
+        intent.setData(Uri.parse("tel:" + thisBusiness.phone));
         getActivity().startActivity(intent);
     }
 
