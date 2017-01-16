@@ -1,5 +1,6 @@
 package io.burgrme.Retrofit;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.FieldNamingPolicy;
@@ -44,12 +45,51 @@ public class YelpServiceFactory {
     private static String key = BuildConfig.CONSUMER_KEY;
     private static String secret = BuildConfig.CONSUMER_SECRET;
 
-
-
-
-
-
     public static YelpService getService() {
+                if (mService == null) {
+
+                    Gson gson =
+                            new GsonBuilder()
+                                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                                    .create();
+
+                    // add the auth token to each request (if one exists)
+                    RequestInterceptor requestInterceptor = new RequestInterceptor() {
+                        @Override
+                        public void intercept(RequestFacade request) {
+                            request.addHeader("Accept", JSON);
+                            request.addHeader("Content-Type", JSON);
+                            String authToken = "i27fVFiilDBH6xSVAtVWzFOb-L4ZuDZ_6q7pTnnZEviPjnqbD0oNKKlGW3s0jAQJvl7NagDej5tmpZvFLkDXrwFWEOPBQvzCTn2qo-i06JeCMb3mK5wi3vmzMBF8WHYx";
+                            request.addHeader("Authorization","Bearer " + authToken);
+                            request.addQueryParam("limit","5");
+                        }
+                    };
+
+                    // if we ever get a 401, invalidate the auth token
+                    ErrorHandler errorHandler = new ErrorHandler() {
+                        @Override
+                        public Throwable handleError(RetrofitError cause) {
+                            // only invalidate the auth token if 401 was
+                            // NOT due to the user being unconfirmed
+
+                            return cause;
+                        }
+                    };
+
+                    RestAdapter.Builder adapterBuilder =
+                    new RestAdapter.Builder()
+                            .setEndpoint(BuildConfig.API_SEARCH_ENDPOINT)
+                            .setRequestInterceptor(requestInterceptor)
+                            .setErrorHandler(errorHandler)
+                            .setClient(new OkClient(new OkHttpClient()))
+                            .setConverter(new GsonConverter(gson));
+
+            mService = adapterBuilder.build().create(YelpService.class);
+        }
+        return mService;
+    }
+
+    public static YelpService getService(final String access_token) {
         if (mService == null) {
 
             Gson gson =
@@ -61,9 +101,10 @@ public class YelpServiceFactory {
             RequestInterceptor requestInterceptor = new RequestInterceptor() {
                 @Override
                 public void intercept(RequestFacade request) {
-                    Log.d("D","detailDebug intercepting");
-
-
+                    request.addHeader("Accept", JSON);
+                    request.addHeader("Content-Type", JSON);
+                    request.addHeader("Authorization","Bearer " + access_token);
+                    request.addQueryParam("limit","5");
                 }
             };
 
@@ -91,11 +132,10 @@ public class YelpServiceFactory {
         return mService;
     }
 
+
     public static void setService(YelpService service) {
         mService = service;
     }
-
-
 
     /**
      *

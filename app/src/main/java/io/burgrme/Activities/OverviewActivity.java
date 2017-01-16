@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -15,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -43,7 +45,12 @@ import io.burgrme.Dagger.Components.DaggerAppComponent;
 import io.burgrme.Dagger.Modules.AppModule;
 import io.burgrme.Logging.Logger;
 import io.burgrme.Model.FoodItem;
+import io.burgrme.Model.responses.YelpBusinessResponse;
+import io.burgrme.Model.responses.YelpResponse;
 import io.burgrme.R;
+import io.burgrme.Retrofit.YelpServiceFactory;
+import retrofit.Callback;
+import retrofit.RetrofitError;
 import retrofit2.Call;
 import retrofit2.Response;
 import rx.Observable;
@@ -72,6 +79,7 @@ public class OverviewActivity extends AppCompatActivity implements LocationListe
     YelpAPI yelpAPI;
 
     Context mContext;
+    SharedPreferences mPrefs;
 
     double mLatitude;
     double mLongitude;
@@ -100,6 +108,7 @@ public class OverviewActivity extends AppCompatActivity implements LocationListe
         ButterKnife.bind(this);
 
         mContext = this;
+        mPrefs = getSharedPreferences("Main",MODE_PRIVATE);
         currentFoodItem = getIntent().getParcelableExtra(Constants.INTENT_EXTRA_FOOD_ITEM);
 
         logger.log("detailDebug 1");
@@ -248,8 +257,30 @@ public class OverviewActivity extends AppCompatActivity implements LocationListe
         try {
             addresses = gcd.getFromLocation(mLatitude, mLongitude, 1);
             if (addresses.size() > 0) {
-                logger.log("detailDebug geo-Location " + mLatitude + " " + mLongitude + " locality = " + addresses.get(0).getLocality());
-                searchBusinesses(addresses.get(0).getLocality());
+                logger.log("detailDebug geo-Location " + mLatitude + " " + mLongitude + " locality = " + addresses.get(0).getLocality() + " currentFoodItem.getName() = " + currentFoodItem.getName());
+                //searchBusinesses(addresses.get(0).getLocality());
+
+                if(mPrefs.contains("access_token")) {
+                    YelpServiceFactory.getService(mPrefs.getString("access_token","")).getBusiness(currentFoodItem.getName(), String.valueOf(mLatitude), String.valueOf(mLongitude), new Callback<YelpResponse>() {
+                        @Override
+                        public void success(YelpResponse yelpResponse, retrofit.client.Response response) {
+                            Log.d("D", "Yelp Response size = " + yelpResponse.businesses.size());
+                            ArrayList<YelpBusinessResponse> businessResponses = yelpResponse.businesses;
+                            ArrayList<io.burgrme.Model.Business> business = new ArrayList<io.burgrme.Model.Business>();
+                            for(YelpBusinessResponse businessResponse : businessResponses)  {
+                                business.add(businessResponse.toBusiness());
+                            }
+                            Log.d("D", "Yelp buisness size to build adapter = " + business.size());
+                            setupViewPager(business);
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Log.d("D", "Yelp Response fail");
+                        }
+                    });
+                }
+                else Log.d("D", "Yelp no access token");
             }
             else {
                 // do your staff
@@ -264,7 +295,8 @@ public class OverviewActivity extends AppCompatActivity implements LocationListe
     }
 
 
-    public void searchBusinesses(final String location) {
+    //old method
+    /*public void searchBusinesses(final String location) {
 
         loading_spinner.setVisibility(View.VISIBLE);
 
@@ -327,13 +359,13 @@ public class OverviewActivity extends AppCompatActivity implements LocationListe
 
             }
         });
-    }
+    }*/
 
     /**
      * Displays the array of business in a view pager
      * @param toDisplay
      */
-    private void setupViewPager(ArrayList<Business> toDisplay) {
+    private void setupViewPager(ArrayList<io.burgrme.Model.Business> toDisplay) {
         //Done loading, hide the spinner
         loading_spinner.setVisibility(View.INVISIBLE);
 

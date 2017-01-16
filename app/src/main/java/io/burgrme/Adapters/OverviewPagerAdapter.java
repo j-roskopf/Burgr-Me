@@ -5,12 +5,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.yelp.clientlib.entities.Business;
-
 import java.util.ArrayList;
 
 import io.burgrme.Constants;
 import io.burgrme.Fragments.OverviewFragment;
+import io.burgrme.Model.Business;
 
 /**
  * Created by Joe on 1/2/2017.
