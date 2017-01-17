@@ -12,13 +12,15 @@ import javax.inject.Inject;
 public class FoodItem implements Parcelable {
 
     @Inject
-    public FoodItem(String drawable, String name){
+    public FoodItem(String drawable, String name, String foodType){
         this.drawable = drawable;
         this.name = name;
+        this.foodType = foodType;
     }
 
     private String drawable;
     private String name;
+    private String foodType;
 
     public String getDrawable() {
         return drawable;
@@ -36,9 +38,18 @@ public class FoodItem implements Parcelable {
         this.name = name;
     }
 
+    public String getFoodType() {
+        return foodType;
+    }
+
+    public void setFoodType(String foodType) {
+        this.foodType = foodType;
+    }
+
     protected FoodItem(Parcel in) {
         drawable = in.readString();
         name = in.readString();
+        foodType = in.readString();
     }
 
     @Override
@@ -50,6 +61,7 @@ public class FoodItem implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(drawable);
         dest.writeString(name);
+        dest.writeString(foodType);
     }
 
     @SuppressWarnings("unused")
