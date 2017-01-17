@@ -10,6 +10,8 @@ public class Constants {
     public static final String INTENT_EXTRA_FOOD_ITEM = "food_item";
 
     public static final String BUNDLE_EXTRA_BUSINESS = "business";
+
+    public static final String FEELING_LUCKY = "feeling_lucky";
     /**
      * END KEYS
      */

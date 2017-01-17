@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Burgr Me</string>
     <string name="err_loading_business">Error loading restaurant, please check your network connection</string>
+
+    <string name="main_card_share_text">Hey! Are you interested in getting %s with me?</string>
+    <string name="share_with_friends">Share</string>
+    <string name="i_m_feeling_lucky">I\'m feeling lucky</string>
 </resources>
