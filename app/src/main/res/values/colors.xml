@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="colorGrayTransparent">#66000000</color>
+
+    <color name="light_font">#FBFBFB</color>
+    <color name="grey_font">#ff9e9e9e</color>
+    <color name="text_shadow">#7F000000</color>
+    <color name="text_shadow_white">#FFFFFF</color>
 </resources>

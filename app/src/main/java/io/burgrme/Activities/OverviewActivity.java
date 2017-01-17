@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -11,6 +12,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
@@ -23,15 +25,11 @@ import android.widget.FrameLayout;
 import com.yelp.clientlib.connection.YelpAPI;
 import com.yelp.clientlib.connection.YelpAPIFactory;
 import com.yelp.clientlib.entities.Business;
-import com.yelp.clientlib.entities.SearchResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
@@ -51,11 +49,6 @@ import io.burgrme.R;
 import io.burgrme.Retrofit.YelpServiceFactory;
 import retrofit.Callback;
 import retrofit.RetrofitError;
-import retrofit2.Call;
-import retrofit2.Response;
-import rx.Observable;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
 
 import static io.burgrme.Constants.REQUEST_CODE_ASK_PERMISSIONS;
 
@@ -369,11 +362,23 @@ public class OverviewActivity extends AppCompatActivity implements LocationListe
         //Done loading, hide the spinner
         loading_spinner.setVisibility(View.INVISIBLE);
 
-        OverviewPagerAdapter detailViewPagerAdapter = new OverviewPagerAdapter(getSupportFragmentManager(),toDisplay);
-        viewPager.setClipToPadding(false);
-        viewPager.setPageMargin(50);
-        viewPager.setPadding(150,150,150,150);
-        viewPager.setAdapter(detailViewPagerAdapter);
+        /**
+         * If feeling lucky was clicked, just navigate the user to that location, else setup the view pager
+         */
+        if(getIntent().getExtras().getBoolean(Constants.FEELING_LUCKY)){
+            String geoUri = "http://maps.google.com/maps?q=loc:" + toDisplay.get(0).latitude + "," + toDisplay.get(0).longitude + " (" + toDisplay.get(0).name + ")";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
+            startActivity(intent);
+            finish();
+        }else{
+            OverviewPagerAdapter detailViewPagerAdapter = new OverviewPagerAdapter(getSupportFragmentManager(),toDisplay);
+            viewPager.setClipToPadding(false);
+            viewPager.setPageMargin(50);
+            viewPager.setPadding(150,150,150,150);
+            viewPager.setAdapter(detailViewPagerAdapter);
+        }
+
+
     }
 
     private void renderView(Business business) {
