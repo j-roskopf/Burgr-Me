@@ -79,7 +79,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.FoodViewHolder
      */
     private void setHighResImage(ImageView imageView, int position){
         String uri = "@drawable/".concat(items.get(position).getDrawable()).concat("_highres");
-
+        
         int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
         Drawable drawable = ContextCompat.getDrawable(context,imageResource);
         imageView.setImageDrawable(drawable);
