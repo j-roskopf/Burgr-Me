@@ -1,6 +1,5 @@
 package io.burgrme.Fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.yelp.clientlib.entities.Category;
@@ -22,6 +20,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.burgrme.Activities.BusinessDetailActivity;
+import io.burgrme.Activities.FullScreenImageViewActivity;
 import io.burgrme.Constants;
 import io.burgrme.Logging.Logger;
 import io.burgrme.Model.Business;
@@ -108,6 +107,16 @@ public class OverviewFragment extends Fragment {
                 }
             });
 
+            businessImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getActivity(), FullScreenImageViewActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra(Constants.IMAGE_URL, thisBusiness.image_url);
+                    getActivity().startActivity(intent);
+                }
+            });
+
             //refer to these 2 SO as to why this is done
             //http://stackoverflow.com/questions/22000077/how-to-request-larger-images-from-yelp-api
             //http://stackoverflow.com/questions/17965691/yelp-api-ios-getting-a-larger-image
@@ -119,7 +128,7 @@ public class OverviewFragment extends Fragment {
                 public void onClick(View view) {
                     Intent intent = new Intent(getActivity(), BusinessDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra(Constants.INTENT_EXTRA_FOOD_ITEM, thisBusiness);
+                    intent.putExtra(Constants.BUNDLE_EXTRA_BUSINESS, thisBusiness);
                     getActivity().startActivity(intent);
                 }
             });
@@ -127,12 +136,6 @@ public class OverviewFragment extends Fragment {
             businessName.setText("NULL");
         }
 
-        rootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(),"Open up " + thisBusiness.name + " in detail detail view",Toast.LENGTH_SHORT).show();
-            }
-        });
 
         return rootView;
     }

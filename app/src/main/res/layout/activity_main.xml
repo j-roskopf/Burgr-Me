@@ -14,7 +14,7 @@
         android:layout_height="match_parent"/>
 
     <com.arlib.floatingsearchview.FloatingSearchView
-        android:id="@+id/floating_search_view"
+        android:id="@+id/floatingSearchView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:floatingSearch_searchBarMarginLeft="@dimen/activity_horizontal_margin"

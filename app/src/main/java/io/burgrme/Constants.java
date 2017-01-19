@@ -12,6 +12,10 @@ public class Constants {
     public static final String BUNDLE_EXTRA_BUSINESS = "business";
 
     public static final String FEELING_LUCKY = "feeling_lucky";
+
+    public static final String IMAGE_URL = "url";
+
+    public static final int SPEECH_KEY = 64;
     /**
      * END KEYS
      */

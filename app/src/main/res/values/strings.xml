@@ -5,4 +5,6 @@
     <string name="main_card_share_text">Hey! Are you interested in getting %s with me?</string>
     <string name="share_with_friends">Share</string>
     <string name="i_m_feeling_lucky">I\'m feeling lucky</string>
+    <string name="voice_record">Voice Record</string>
+    <string name="specify_location">Specify Location</string>
 </resources>

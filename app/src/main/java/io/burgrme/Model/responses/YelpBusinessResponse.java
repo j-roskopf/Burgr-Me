@@ -29,6 +29,7 @@ public class YelpBusinessResponse {
     public Business toBusiness()    {
         Business toReturn = new Business();
         toReturn.name = name;
+        toReturn.id = id;
         toReturn.rating = String.valueOf(rating);
         toReturn.review_count = String.valueOf(review_count);
         toReturn.phone = phone;
@@ -37,11 +38,11 @@ public class YelpBusinessResponse {
         toReturn.longitude = String.valueOf(coordinates.longitude);
         String businessCategories = "";
         for(YelpCategory cat : categories)  {
-            businessCategories = businessCategories.concat(cat.title + " ");
+            businessCategories = businessCategories.concat(cat.title + ",");
         }
         toReturn.categories = businessCategories;
         toReturn.url = url;
-        if(location.display_address.length > 0) toReturn.display_address = location.display_address.toString();
+        if(location.display_address.length > 0) toReturn.display_address = location.display_address[0];
         toReturn.price = price;
         toReturn.image_url = image_url;
         toReturn.distance = String.valueOf(distance);

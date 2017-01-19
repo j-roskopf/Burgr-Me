@@ -25,7 +25,8 @@
         <activity
             android:name=".Activities.OverviewActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity android:name=".Activities.BusinessDetailActivity"></activity>
+        <activity android:name=".Activities.BusinessDetailActivity" />
+        <activity android:name=".Activities.FullScreenImageViewActivity"></activity>
     </application>
 
 </manifest>
