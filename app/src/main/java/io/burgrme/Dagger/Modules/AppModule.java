@@ -33,13 +33,21 @@ public class AppModule {
     @Provides
     public FoodItem[] provideFoodItems(){
         return new FoodItem[] {
-                new FoodItem("pizza", "Pizza", "Italian"),
-                new FoodItem("cheeseburger", "Cheeseburger", "American"),
-                new FoodItem("burrito", "Burrito", "Mexican"),
-                new FoodItem("bahn_mi", "Bahn Mi", "Vietnamese"),
-                new FoodItem("coffee", "Coffee" , "Drinks / Snacks"),
-                new FoodItem("bakery", "Bakery", "Drinks / Snacks"),
-                new FoodItem("sandwich", "Sandwich", "American")
+                new FoodItem("pizza", "Pizza", ""),
+                new FoodItem("cheeseburger", "Cheeseburger", ""),
+                new FoodItem("burrito", "Burrito", ""),
+                new FoodItem("bahn_mi", "Bahn Mi", ""),
+                new FoodItem("coffee", "Coffee" , ""),
+                new FoodItem("bakery", "Bakery", ""),
+                new FoodItem("sandwich", "Sandwich", ""),
+                new FoodItem("beer", "Craft Beer", ""),
+                new FoodItem("pho", "Pho", ""),
+                new FoodItem("ice_cream", "Ice Cream", ""),
+                new FoodItem("chinese", "General Tso's", ""),
+                new FoodItem("sushi", "Sushi", ""),
+                new FoodItem("curry", "Curry", ""),
+                new FoodItem("wings", "Wings", ""),
+                new FoodItem("breakfast", "Breakfast", "")
         };
     }
 
