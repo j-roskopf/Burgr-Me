@@ -20,4 +20,25 @@ public class Business implements Serializable {
     public String price;
     public String image_url;
     public String distance;
+    public String id;
+
+    @Override
+    public String toString() {
+        return "Business{" +
+                "name='" + name + '\'' +
+                ", rating='" + rating + '\'' +
+                ", review_count='" + review_count + '\'' +
+                ", phone='" + phone + '\'' +
+                ", display_phone='" + display_phone + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", categories='" + categories + '\'' +
+                ", url='" + url + '\'' +
+                ", display_address='" + display_address + '\'' +
+                ", price='" + price + '\'' +
+                ", image_url='" + image_url + '\'' +
+                ", id='" + id + '\'' +
+                ", distance='" + distance + '\'' +
+                '}';
+    }
 }
