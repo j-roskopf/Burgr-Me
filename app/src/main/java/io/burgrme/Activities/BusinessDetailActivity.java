@@ -1,7 +1,7 @@
 package io.burgrme.Activities;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import io.burgrme.Constants;
 import io.burgrme.Model.Business;
 import io.burgrme.R;
+import io.burgrme.SharedFunctions;
 
 public class BusinessDetailActivity extends AppCompatActivity {
 
@@ -31,6 +32,9 @@ public class BusinessDetailActivity extends AppCompatActivity {
 
     Business currentBusiness;
 
+    SharedFunctions sharedFunctions = new SharedFunctions();
+
+    Context context;
     /**
      * UI
      */
@@ -59,8 +63,15 @@ public class BusinessDetailActivity extends AppCompatActivity {
     @BindView(R.id.reviewText)
     TextView reviewText;
 
+    @BindView(R.id.directionsButton)
+    ImageView directionsButton;
+
+    @BindView(R.id.phoneButton)
+    ImageView phoneButton;
+
     @BindView(R.id.menuButton)
     ImageView menuButton;
+
 
     @BindView(R.id.collectionPicker)
     com.anton46.collectionitempicker.CollectionPicker collectionPicker;
@@ -71,6 +82,7 @@ public class BusinessDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_detail);
         ButterKnife.bind(this);
+        context = this;
 
         if(getIntent().getExtras().getSerializable(Constants.BUNDLE_EXTRA_BUSINESS) != null){
             currentBusiness = (Business) getIntent().getExtras().getSerializable(Constants.BUNDLE_EXTRA_BUSINESS);
@@ -100,8 +112,23 @@ public class BusinessDetailActivity extends AppCompatActivity {
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.yelp.com/menu/".concat(currentBusiness.id)));
-                startActivity(browserIntent);
+                sharedFunctions.openBusinessMenu(currentBusiness,(Activity)context);
+            }
+        });
+
+        //set Call button
+        phoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharedFunctions.callBusiness(currentBusiness,(Activity)context);
+            }
+        });
+
+        //set directions button
+        directionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharedFunctions.navigateToBusiness(currentBusiness,(Activity)context);
             }
         });
 
