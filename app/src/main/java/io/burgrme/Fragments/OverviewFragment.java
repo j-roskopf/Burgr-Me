@@ -1,7 +1,6 @@
 package io.burgrme.Fragments;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,6 +24,7 @@ import io.burgrme.Constants;
 import io.burgrme.Logging.Logger;
 import io.burgrme.Model.Business;
 import io.burgrme.R;
+import io.burgrme.SharedFunctions;
 
 /**
  * Created by Joe on 1/2/2017.
@@ -66,6 +66,8 @@ public class OverviewFragment extends Fragment {
     Business thisBusiness;
     Logger logger;
 
+    SharedFunctions sharedFunctions;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,25 +87,25 @@ public class OverviewFragment extends Fragment {
             btn_phone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    callBusiness(thisBusiness);
+                    sharedFunctions.callBusiness(thisBusiness, getActivity());
                 }
             });
             btn_share.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    shareBusiness(thisBusiness);
+                    sharedFunctions.shareBusiness(thisBusiness, getActivity());
                 }
             });
             btn_website.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openBusinessWebsite(thisBusiness);
+                    sharedFunctions.openBusinessWebsite(thisBusiness, getActivity());
                 }
             });
             btn_map.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    navigateToBusiness(thisBusiness);
+                    sharedFunctions.navigateToBusiness(thisBusiness, getActivity());
                 }
             });
 
@@ -146,33 +148,10 @@ public class OverviewFragment extends Fragment {
         return toReturn;
     }
 
-    private void navigateToBusiness(Business thisBusiness) {
-        String geoUri = "http://maps.google.com/maps?q=loc:" + thisBusiness.latitude + "," + thisBusiness.longitude + " (" + thisBusiness.name + ")";
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(geoUri));
-        getActivity().startActivity(intent);
-    }
 
-    private void openBusinessWebsite(Business thisBusiness) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(thisBusiness.url));
-        startActivity(i);
-    }
-
-    private void shareBusiness(Business thisBusiness) {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, thisBusiness.url);
-        sendIntent.setType("text/plain");
-        startActivity(sendIntent);
-    }
-
-    private void callBusiness(Business thisBusiness) {
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + thisBusiness.phone));
-        getActivity().startActivity(intent);
-    }
 
     private void initVars(){
         logger = new Logger();
+        sharedFunctions = new SharedFunctions();
     }
 }

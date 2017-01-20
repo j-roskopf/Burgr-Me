@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#0288D1</color>
     <color name="colorAccent">#4CAF50</color>
 
+    <color name="moneyGreen">#4CAF50</color>
+
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="colorGrayTransparent">#66000000</color>
 

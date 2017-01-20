@@ -69,9 +69,9 @@
                     android:background="@drawable/view_right_border">
 
                     <ImageView
-                        android:id="@+id/shareButton"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:id="@+id/phoneButton"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_centerHorizontal="true"
                         android:layout_margin="4dp"
                         android:src="@drawable/ic_call_black_18dp" />
@@ -79,7 +79,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/shareButton"
+                        android:layout_below="@+id/phoneButton"
                         android:layout_centerHorizontal="true"
                         android:layout_margin="4dp"
                         android:text="Call" />
@@ -94,8 +94,8 @@
 
                     <ImageView
                         android:id="@+id/directionsButton"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_centerHorizontal="true"
                         android:layout_margin="4dp"
                         android:src="@drawable/ic_map_black_18dp" />
@@ -118,8 +118,8 @@
 
                     <ImageView
                         android:id="@+id/menuButton"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_centerHorizontal="true"
                         android:layout_margin="4dp"
                         android:src="@drawable/ic_restaurant_menu_black_18dp" />
@@ -148,8 +148,8 @@
                         android:layout_centerInParent="true"
                         android:layout_margin="4dp"
                         android:text="$"
-                        android:textColor="@color/black"
-                        android:textSize="28sp" />
+                        android:textColor="@color/moneyGreen"
+                        android:textSize="24sp" />
 
                 </RelativeLayout>
 
@@ -180,106 +180,218 @@
 
             </LinearLayout>
 
+            <!-- Bottom info container -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_margin="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    card_view:cardCornerRadius="4dp">
-
-                    <TextView
-                        android:id="@+id/distanceText"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Distance" />
-
-
-                </android.support.v7.widget.CardView>
+                <!-- Address -->
 
                 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_margin="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
+                    android:layout_margin="16dp"
                     card_view:cardCornerRadius="4dp">
 
-                    <TextView
-                        android:id="@+id/addressText"
+                    <LinearLayout
                         android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Address" />
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_margin="8dp"
+                            android:src="@drawable/ic_action_distance"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+
+                        <TextView
+                            android:id="@+id/addressText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Address" />
+
+                    </LinearLayout>
+
+
+
 
 
                 </android.support.v7.widget.CardView>
 
-
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_margin="16dp"
+                <!-- phone and distance container -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    card_view:cardCornerRadius="4dp">
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                    <TextView
-                        android:id="@+id/phoneText"
+                    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Display Phone" />
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        card_view:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_margin="8dp"
+                                android:src="@drawable/ic_phone_black_18dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp" />
+
+                            <TextView
+                                android:id="@+id/phoneText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Display Phone" />
+
+                        </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_margin="16dp"
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        card_view:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_margin="8dp"
+                                android:src="@drawable/ic_navigation_black_18dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp" />
+
+                            <TextView
+                                android:id="@+id/distanceText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Distance" />
+
+                        </LinearLayout>
+
+
+
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <!-- review and count container -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    card_view:cardCornerRadius="4dp">
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                    <TextView
-                        android:id="@+id/ratingText"
+                    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Rating" />
+                        android:layout_margin="8dp"
+                        card_view:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_margin="8dp"
+                                android:src="@drawable/ic_star_black_18dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp" />
+
+                            <TextView
+                                android:id="@+id/ratingText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Rating" />
+
+                        </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
 
-                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_margin="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
-                    card_view:cardCornerRadius="4dp">
 
-                    <TextView
-                        android:id="@+id/reviewText"
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Review count" />
+                        android:layout_margin="8dp"
+                        card_view:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_margin="8dp"
+                                android:src="@drawable/ic_person_black_18dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp" />
+
+                            <TextView
+                                android:id="@+id/reviewText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Review count" />
+
+                        </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -293,7 +405,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:background="@color/colorPrimaryDark"
-        android:src="@drawable/ic_language_white_24dp"
+        android:src="@drawable/ic_favorite_white_18dp"
         app:layout_anchor="@id/main.appbar"
         app:layout_anchorGravity="bottom|right|end" />
 </android.support.design.widget.CoordinatorLayout>
