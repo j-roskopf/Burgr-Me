@@ -74,5 +74,17 @@ public class FavoritesActivity extends AppCompatActivity {
             }
         });
 
+        checkIfAnyFavoritesRemain();
+
+    }
+
+    /**
+     * If no favorites remain, show the message
+     */
+    private void checkIfAnyFavoritesRemain(){
+        OrderedRealmCollection<Business> data = realm.where(Business.class).findAll();
+        if(data.size() == 0){
+            noFavoritesContainer.setVisibility(View.VISIBLE);
+        }
     }
 }
