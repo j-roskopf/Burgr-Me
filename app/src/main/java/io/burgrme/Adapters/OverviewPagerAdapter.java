@@ -28,8 +28,7 @@ public class OverviewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
         Fragment detailFragment = new OverviewFragment();
-
-        bundle.putSerializable(Constants.BUNDLE_EXTRA_BUSINESS,businesses.get(position));
+                bundle.putParcelable(Constants.BUNDLE_EXTRA_BUSINESS,businesses.get(position));
         detailFragment.setArguments(bundle);
 
         return detailFragment;

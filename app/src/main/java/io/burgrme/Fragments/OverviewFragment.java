@@ -81,7 +81,7 @@ public class OverviewFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            thisBusiness = (Business) bundle.getSerializable(Constants.BUNDLE_EXTRA_BUSINESS);
+            thisBusiness = (Business) bundle.getParcelable(Constants.BUNDLE_EXTRA_BUSINESS);
             businessName.setText(thisBusiness.name);
             businessSnippet.setText(thisBusiness.categories);
             btn_phone.setOnClickListener(new View.OnClickListener() {
