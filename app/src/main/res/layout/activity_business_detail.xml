@@ -44,6 +44,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -403,9 +404,14 @@
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:id="@+id/favoriteButton"
         android:background="@color/colorPrimaryDark"
         android:src="@drawable/ic_favorite_white_18dp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         app:layout_anchor="@id/main.appbar"
         app:layout_anchorGravity="bottom|right|end" />
+
+
+
+
 </android.support.design.widget.CoordinatorLayout>

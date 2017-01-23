@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 def cfg = rootProject.ext.configuration
 def libs = rootProject.ext.libraries;
@@ -101,6 +102,13 @@ dependencies {
 
     //Label display
     compile "com.anton46:collection-picker:${libs.label}"
+
+    //nice alert dialog
+    compile 'cn.pedant.sweetalert:library:1.3'
+
+    compile 'io.realm:android-adapters:1.4.0'
+
+    compile 'com.github.varunest:sparkbutton:1.0.3'
 
 
 }

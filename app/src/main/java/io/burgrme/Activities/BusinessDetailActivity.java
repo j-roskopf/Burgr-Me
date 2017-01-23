@@ -23,18 +23,23 @@ import io.burgrme.Constants;
 import io.burgrme.Model.Business;
 import io.burgrme.R;
 import io.burgrme.SharedFunctions;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
-public class BusinessDetailActivity extends AppCompatActivity {
+public class BusinessDetailActivity extends AppCompatActivity  {
 
     /**
      * NON UI
      */
 
-    Business currentBusiness;
+    private Business currentBusiness;
 
-    SharedFunctions sharedFunctions = new SharedFunctions();
+    private SharedFunctions sharedFunctions = new SharedFunctions();
 
-    Context context;
+    private Context context;
+
+    private Realm realm;
+
     /**
      * UI
      */
@@ -72,9 +77,11 @@ public class BusinessDetailActivity extends AppCompatActivity {
     @BindView(R.id.menuButton)
     ImageView menuButton;
 
-
     @BindView(R.id.collectionPicker)
     com.anton46.collectionitempicker.CollectionPicker collectionPicker;
+
+    @BindView(R.id.favoriteButton)
+    android.support.design.widget.FloatingActionButton favoriteButton;
 
 
     @Override
@@ -82,10 +89,12 @@ public class BusinessDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_detail);
         ButterKnife.bind(this);
-        context = this;
 
-        if(getIntent().getExtras().getSerializable(Constants.BUNDLE_EXTRA_BUSINESS) != null){
-            currentBusiness = (Business) getIntent().getExtras().getSerializable(Constants.BUNDLE_EXTRA_BUSINESS);
+        context = this;
+        realm = Realm.getDefaultInstance();
+
+        if(getIntent().getExtras().getParcelable(Constants.BUNDLE_EXTRA_BUSINESS) != null){
+            currentBusiness = (Business) getIntent().getExtras().getParcelable(Constants.BUNDLE_EXTRA_BUSINESS);
 
             Log.d("D","currentBusiness = " + currentBusiness);
 
@@ -159,5 +168,70 @@ public class BusinessDetailActivity extends AppCompatActivity {
         //Set Review count
         reviewText.setText(currentBusiness.review_count);
 
+        //setup favorite button
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveBusiness(currentBusiness);
+            }
+        });
+
     }
+
+    /**
+     * Saves business to database
+     * @param businessToSave
+     */
+    private void saveBusiness(final Business businessToSave){
+        if(!inDatabaseAlready(businessToSave)){
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    // Add a person
+                    Business business = realm.createObject(Business.class);
+                    business.name = businessToSave.name;
+                    business.rating = businessToSave.rating;
+                    business.review_count = businessToSave.review_count;
+                    business.phone = businessToSave.phone;
+                    business.display_phone = businessToSave.display_phone;
+                    business.latitude = businessToSave.latitude;
+                    business.longitude = businessToSave.longitude;
+                    business.categories = businessToSave.categories;
+                    business.url = businessToSave.url;
+                    business.display_address = businessToSave.display_address;
+                    business.price = businessToSave.price;
+                    business.image_url = businessToSave.image_url;
+                    business.distance = businessToSave.distance;
+                    business.id = businessToSave.id;
+                    Snackbar.make(baseLayout,"Successful",Snackbar.LENGTH_SHORT).show();
+                }
+            });
+        }else{
+            Snackbar.make(baseLayout,"Already Favorited!",Snackbar.LENGTH_SHORT).show();
+        }
+
+    }
+
+    /**
+     * Checks to see if business is already in the database
+     * @param businessToCheck
+     */
+    private boolean inDatabaseAlready(Business businessToCheck){
+        RealmResults<Business> results = realm.where(Business.class).equalTo("name",businessToCheck.name).findAll();
+        if(results.size() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close(); // Remember to close Realm when done.
+    }
+
+
+
+
 }
