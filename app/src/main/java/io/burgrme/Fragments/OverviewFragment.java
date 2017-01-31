@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,7 +46,7 @@ public class OverviewFragment extends Fragment {
     ImageView businessImage;
 
     @BindView(R.id.businessInfoContainer)
-    RelativeLayout businessInfoContainer;
+    LinearLayout businessInfoContainer;
     
     @BindView(R.id.btn_phone)
     ImageButton btn_phone;
@@ -83,7 +84,7 @@ public class OverviewFragment extends Fragment {
         if (bundle != null) {
             thisBusiness = (Business) bundle.getParcelable(Constants.BUNDLE_EXTRA_BUSINESS);
             businessName.setText(thisBusiness.name);
-            businessSnippet.setText(thisBusiness.categories);
+            businessSnippet.setText(getBusinessDistance(thisBusiness.distance));
             btn_phone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -140,6 +141,17 @@ public class OverviewFragment extends Fragment {
 
 
         return rootView;
+    }
+
+    private String getBusinessDistance(String distanceInMeters) {
+        String toReturn = "";
+        if(distanceInMeters != null && !distanceInMeters.equals("")) {
+            double distanceDouble = Double.valueOf(distanceInMeters);
+            double distanceInMiles = distanceDouble * (0.000621371);
+            toReturn = String.format("%.2f", distanceInMiles) + " mi away";
+        }
+        else return "Unable to calculate distance";
+        return toReturn;
     }
 
     private String getBusinessCategories(ArrayList<Category> categories) {
