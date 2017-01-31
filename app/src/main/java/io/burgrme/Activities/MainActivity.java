@@ -36,7 +36,6 @@ import io.burgrme.Dagger.Components.DaggerAppComponent;
 import io.burgrme.Dagger.Modules.AppModule;
 import io.burgrme.Logging.Logger;
 import io.burgrme.Model.FoodItem;
-import io.burgrme.Model.Toppings;
 import io.burgrme.Model.responses.YelpTokenResponse;
 import io.burgrme.R;
 import io.burgrme.Retrofit.YelpServiceFactory;

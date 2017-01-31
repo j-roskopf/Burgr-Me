@@ -41,7 +41,8 @@
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="8dp"
                     android:padding="@dimen/activity_horizontal_margin"
-                    android:textSize="20sp" />
+                    android:textSize="28sp"
+                    android:textAppearance="@android:style/TextAppearance.Material.Title"/>
 
                 <TextView
                     android:id="@+id/businessSnippet"
@@ -49,7 +50,8 @@
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="8dp"
                     android:padding="@dimen/activity_horizontal_margin"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:textAppearance="@android:style/TextAppearance.Material.Medium"/>
             </LinearLayout>
 
             <LinearLayout
@@ -64,6 +66,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/overview_button_border"
                     android:src="@drawable/ic_phone_white_24dp"
                     />
 
@@ -72,6 +75,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/overview_button_border"
                     android:src="@drawable/ic_share_white_24dp"/>
 
                 <ImageButton
@@ -79,6 +83,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/overview_button_border"
                     android:src="@drawable/ic_language_white_24dp"/>
 
                 <ImageButton
@@ -86,6 +91,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@drawable/overview_button_border"
                     android:src="@drawable/ic_map_white_24dp"/>
 
             </LinearLayout>
