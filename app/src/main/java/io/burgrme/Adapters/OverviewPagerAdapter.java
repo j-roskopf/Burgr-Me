@@ -27,11 +27,11 @@ public class OverviewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Bundle bundle = new Bundle();
-        Fragment detailFragment = new OverviewFragment();
+        Fragment overviewFragment = new OverviewFragment();
                 bundle.putParcelable(Constants.BUNDLE_EXTRA_BUSINESS,businesses.get(position));
-        detailFragment.setArguments(bundle);
+        overviewFragment.setArguments(bundle);
 
-        return detailFragment;
+        return overviewFragment;
     }
 
     @Override
