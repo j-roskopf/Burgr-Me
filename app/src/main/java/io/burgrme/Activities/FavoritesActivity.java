@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.ftinc.scoop.Scoop;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.burgrme.Adapters.FavoriteAdapter;
@@ -28,6 +30,7 @@ public class FavoritesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Scoop.getInstance().apply(this);
         setContentView(R.layout.activity_favorites);
         ButterKnife.bind(this);
 

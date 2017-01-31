@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.anton46.collectionitempicker.Item;
 import com.bumptech.glide.Glide;
+import com.ftinc.scoop.Scoop;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +88,7 @@ public class BusinessDetailActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Scoop.getInstance().apply(this);
         setContentView(R.layout.activity_business_detail);
         ButterKnife.bind(this);
 

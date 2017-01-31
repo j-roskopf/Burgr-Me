@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.ftinc.scoop.Scoop;
 import com.yelp.clientlib.connection.YelpAPI;
 import com.yelp.clientlib.connection.YelpAPIFactory;
 import com.yelp.clientlib.entities.Business;
@@ -96,6 +97,7 @@ public class OverviewActivity extends AppCompatActivity implements LocationListe
         component.inject(this);
 
         super.onCreate(savedInstanceState);
+        Scoop.getInstance().apply(this);
         setContentView(R.layout.activity_overview);
 
         ButterKnife.bind(this);

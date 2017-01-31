@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import android.widget.RelativeLayout;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+import com.ftinc.scoop.Scoop;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -34,6 +36,7 @@ import io.burgrme.Dagger.Components.DaggerAppComponent;
 import io.burgrme.Dagger.Modules.AppModule;
 import io.burgrme.Logging.Logger;
 import io.burgrme.Model.FoodItem;
+import io.burgrme.Model.Toppings;
 import io.burgrme.Model.responses.YelpTokenResponse;
 import io.burgrme.R;
 import io.burgrme.Retrofit.YelpServiceFactory;
@@ -81,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         component.inject(this);
 
         super.onCreate(savedInstanceState);
+        Scoop.getInstance().choose(Scoop.getInstance().getFlavors().get(0));
+        Scoop.getInstance().apply(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 

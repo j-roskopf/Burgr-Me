@@ -4,6 +4,10 @@
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorAccent">#FF5252</color>
 
+    <color name="darkColorPrimary">#212121</color>
+    <color name="darkColorPrimaryDark">#303030</color>
+    <color name="darkColorAccent">#424242</color>
+
     <color name="deleteColor">#F44336</color>
 
     <color name="moneyGreen">#4CAF50</color>
