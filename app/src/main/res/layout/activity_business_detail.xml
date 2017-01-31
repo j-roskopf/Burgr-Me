@@ -30,8 +30,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/pizza_highres"
+                android:transitionName="business_image"
                 app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar

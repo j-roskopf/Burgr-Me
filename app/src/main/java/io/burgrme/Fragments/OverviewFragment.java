@@ -2,6 +2,7 @@ package io.burgrme.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -132,6 +133,10 @@ public class OverviewFragment extends Fragment {
                     Intent intent = new Intent(getActivity(), BusinessDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra(Constants.BUNDLE_EXTRA_BUSINESS, thisBusiness);
+                    //todo make scene transition better
+                    /*ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation(getActivity(), businessImage, "business_image");
+                    getActivity().startActivity(intent,options.toBundle());*/
                     getActivity().startActivity(intent);
                 }
             });
