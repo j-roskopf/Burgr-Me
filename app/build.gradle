@@ -110,5 +110,7 @@ dependencies {
 
     compile 'com.github.varunest:sparkbutton:1.0.3'
 
+    //Theme Switcher
+    compile ('com.52inc:scoops:1.0.0')
 
 }

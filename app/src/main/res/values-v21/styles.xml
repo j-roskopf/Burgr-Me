@@ -14,7 +14,7 @@
                 <item name="android:windowAllowReturnTransitionOverlap">true</item>
         </style>
 
-        <style name="Theme.AppCompat.Translucent">
+        <style name="Theme.AppCompat.Translucent" parent="@style/Theme.AppCompat.Light.NoActionBar">
                 <item name="android:windowNoTitle">true</item>
                 <item name="android:windowBackground">@color/colorGrayTransparent</item>
                 <item name="android:colorBackgroundCacheHint">@null</item>
