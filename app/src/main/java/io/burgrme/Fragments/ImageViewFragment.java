@@ -20,7 +20,7 @@ public class ImageViewFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.fragment_detail, container, false);
+                R.layout.fragment_overview, container, false);
         ButterKnife.bind(this, rootView);
 
 
