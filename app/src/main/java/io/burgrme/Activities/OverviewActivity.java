@@ -96,7 +96,7 @@ public class OverviewActivity extends AppCompatActivity implements LocationListe
         component.inject(this);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_overview);
 
         ButterKnife.bind(this);
 
@@ -308,7 +308,7 @@ public class OverviewActivity extends AppCompatActivity implements LocationListe
             OverviewPagerAdapter detailViewPagerAdapter = new OverviewPagerAdapter(getSupportFragmentManager(),toDisplay);
             viewPager.setClipToPadding(false);
             viewPager.setPageMargin(50);
-            viewPager.setPadding(150,150,150,150);
+            viewPager.setPadding(150,400,150,400);
             viewPager.setAdapter(detailViewPagerAdapter);
         }
 

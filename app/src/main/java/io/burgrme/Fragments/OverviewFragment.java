@@ -73,7 +73,7 @@ public class OverviewFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.fragment_detail, container, false);
+                R.layout.fragment_overview, container, false);
         ButterKnife.bind(this, rootView);
 
         initVars();
@@ -147,8 +147,6 @@ public class OverviewFragment extends Fragment {
         for(Category cat: categories) toReturn = toReturn.concat(cat.name() + " ");
         return toReturn;
     }
-
-
 
     private void initVars(){
         logger = new Logger();
