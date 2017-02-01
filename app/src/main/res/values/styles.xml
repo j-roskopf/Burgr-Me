@@ -29,21 +29,24 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
 
-    <style name="Theme_Scoop_Default" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme_Light" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:centerColor">@color/text_shadow_white</item>
+        <item name="android:colorBackground">@color/text_shadow_white</item>
         <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:textColorSecondary">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="Theme_Scoop_Dark" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme_Dark" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/darkColorPrimary</item>
         <item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
-        <item name="android:background">@color/darkColorAccent</item>
         <item name="colorAccent">@color/darkColorAccent</item>
-        <item name="android:textColorPrimary">@color/light_font</item>
-        <item name="android:textColorSecondary">@color/grey_font</item>
+        <item name="android:centerColor">@color/darkColorAccent</item>
+        <item name="android:colorBackground">@color/darkColorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/text_shadow_white</item>
+        <item name="android:textColorSecondary">@color/text_shadow_white</item>
     </style>
 
 </resources>

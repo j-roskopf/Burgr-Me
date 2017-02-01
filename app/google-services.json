@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "983736941841",
+    "firebase_url": "https://burgr-me.firebaseio.com",
+    "project_id": "burgr-me",
+    "storage_bucket": "burgr-me.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983736941841:android:b84550841812167c",
+        "android_client_info": {
+          "package_name": "io.burgrme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983736941841-p8ikjr0pgr15rd5cl6sq9p3ed64hg5m3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBonvfN0D6faQLghMqVRmWubhXC4s6fuUc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983736941841-p8ikjr0pgr15rd5cl6sq9p3ed64hg5m3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

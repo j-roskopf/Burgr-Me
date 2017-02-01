@@ -19,6 +19,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
+            android:background="?android:attr/centerColor"
             android:layout_height="match_parent">
 
             <RelativeLayout
@@ -62,7 +63,6 @@
                 <Button
                     android:id="@+id/shareButton"
                     android:text="@string/share_with_friends"
-                    android:textColor="@color/colorPrimary"
                     android:background="@android:color/transparent"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -72,7 +72,6 @@
                     android:id="@+id/luckyButton"
                     android:text="@string/i_m_feeling_lucky"
                     android:background="@android:color/transparent"
-                    android:textColor="@color/colorPrimaryDark"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

@@ -22,8 +22,10 @@ public class BaseApplication extends Application {
         Realm.init(this);
 
         Scoop.waffleCone()
-                .addFlavor("Default", R.style.Theme_Scoop_Default, true)
-                .addFlavor("Light", R.style.Theme_Scoop_Dark)
+                //This Default Option is placeholder does not work
+                .addFlavor("Helpme", R.style.Theme_Light, true)
+                .addFlavor("Light", R.style.Theme_Light)
+                .addFlavor("Dark", R.style.Theme_Dark)
                 .setSharedPreferences(PreferenceManager.getDefaultSharedPreferences(this))
                 .initialize();
     }

@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         component.inject(this);
 
         super.onCreate(savedInstanceState);
-        Scoop.getInstance().choose(Scoop.getInstance().getFlavors().get(0));
+        Scoop.getInstance().choose(Scoop.getInstance().getFlavors().get(1));
         Scoop.getInstance().apply(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);

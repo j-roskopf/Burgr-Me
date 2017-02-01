@@ -7,6 +7,7 @@
     <color name="darkColorPrimary">#212121</color>
     <color name="darkColorPrimaryDark">#303030</color>
     <color name="darkColorAccent">#424242</color>
+    <color name="darkColorCardBackground">#424242</color>
 
     <color name="deleteColor">#F44336</color>
 
