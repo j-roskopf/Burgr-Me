@@ -113,4 +113,7 @@ dependencies {
     //Theme Switcher
     compile ('com.52inc:scoops:1.0.0')
 
+    //Elastic Layout
+    compile ('com.github.Commit451:ElasticDragDismissLayout:1.0.4')
+
 }

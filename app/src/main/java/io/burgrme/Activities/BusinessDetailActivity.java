@@ -2,10 +2,12 @@ package io.burgrme.Activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,8 +26,12 @@ import io.burgrme.Constants;
 import io.burgrme.Model.Business;
 import io.burgrme.R;
 import io.burgrme.SharedFunctions;
+import io.burgrme.util.ElasticDragDismissCallback;
+import io.burgrme.util.ElasticDragDismissCoordinatorLayout;
 import io.realm.Realm;
 import io.realm.RealmResults;
+
+import static io.burgrme.util.ElasticDragDismissCoordinatorLayout.*;
 
 public class BusinessDetailActivity extends AppCompatActivity  {
 
@@ -49,7 +55,7 @@ public class BusinessDetailActivity extends AppCompatActivity  {
     ImageView mainBackdrop;
 
     @BindView(R.id.baseLayout)
-    CoordinatorLayout baseLayout;
+    ElasticDragDismissCoordinatorLayout baseLayout;
 
     @BindView(R.id.dollarText)
     TextView dollarText;
@@ -95,6 +101,31 @@ public class BusinessDetailActivity extends AppCompatActivity  {
         context = this;
         realm = Realm.getDefaultInstance();
 
+        baseLayout.addListener(new ElasticDragDismissCallback() {
+            @Override
+            public void onDrag(float elasticOffset, float elasticOffsetPixels, float rawOffset, float rawOffsetPixels) {
+            }
+
+            @Override
+            public void onDragDismissed() {
+                // if we drag dismiss downward then the default reversal of the enter
+                // transition would slide content upward which looks weird. So reverse it.
+                if (baseLayout.getTranslationY() > 0 && Build.VERSION.SDK_INT >= 21) {
+                    /*getWindow().setReturnTransition(
+                            TransitionInflater.from(BusinessDetailActivity.this)
+                                    .inflateTransition(R.transition.about_return_downward));*/
+                }
+                if (Build.VERSION.SDK_INT >= 21) {
+                    finishAfterTransition();
+                } else {
+                    finish();
+                }
+            }
+        });
+        /*if (Build.VERSION.SDK_INT >= 21) {
+            baseLayout.addListener(new SystemChromeFader(this));
+        }*/
+
         if(getIntent().getExtras().getParcelable(Constants.BUNDLE_EXTRA_BUSINESS) != null){
             currentBusiness = (Business) getIntent().getExtras().getParcelable(Constants.BUNDLE_EXTRA_BUSINESS);
 
@@ -112,9 +143,6 @@ public class BusinessDetailActivity extends AppCompatActivity  {
      */
     private void setBusinessInformation(){
         Glide.with(this).load(currentBusiness.image_url).into(mainBackdrop);
-
-        //Set name
-        getSupportActionBar().setTitle(currentBusiness.name);
 
         //Set dollar
         dollarText.setText(currentBusiness.price);
